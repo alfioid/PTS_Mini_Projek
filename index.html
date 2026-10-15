@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaltara Harvest - Dashboard Produk UMKM</title>
+  <title>BePro - Dashboard Produk UMKM</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -54,33 +54,49 @@
     
     <section id="productContainer" class="product-container grid-view"></section>
 
-    <!-- FORM PEMESANAN PRODUK -->
+ <!-- FORM PEMESANAN PRODUK INTERAKTIF -->
     <section class="form-section">
       <h2>📝 Form Pemesanan Produk UMKM</h2>
       <div id="formAlert" class="alert" style="display: none;"></div>
 
       <form id="orderForm" novalidate>
-        <div class="form-group">
-          <label for="namaInput">Nama Lengkap *</label>
-          <input type="text" id="namaInput" placeholder="Masukkan nama (minimal 5 karakter)">
-          <small id="namaError" class="error-text"></small>
+        <!-- Nama Pembeli -->
+        <div class="form-group row-align">
+          <label for="namaInput">Nama Pembeli</label>
+          <div class="input-wrapper">
+            <input type="text" id="namaInput" placeholder="Masukkan nama pembeli (minimal 5 karakter)">
+            <small id="namaError" class="error-text"></small>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="emailInput">Alamat Email *</label>
-          <input type="email" id="emailInput" placeholder="contoh: nama@email.com">
-          <small id="emailError" class="error-text"></small>
+        <!-- Kartu Daftar Item Belanja -->
+        <div class="cart-card">
+          <div id="cartItemsContainer" class="cart-items-container">
+            <!-- Item produk dinamis akan ditambahkan oleh JavaScript di sini -->
+          </div>
+
+          <!-- Tombol Tambah Item -->
+          <div class="add-item-wrapper">
+          </div>
+          <hr class="cart-divider">
+          <!-- Ringkasan Total Belanja -->
+          <div class="cart-summary-row">
+            <div class="summary-label">Total</div>
+            <div class="summary-values">
+              <span class="total-qty-text">
+                <strong id="totalQtyCount">0</strong> barang dibeli
+              </span>
+              <span class="total-price-text">
+                Rp <strong id="grandTotalPrice">0</strong>
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="produkSelect">Pilih Produk *</label>
-          <select id="produkSelect">
-            <option value="">-- Pilih Produk --</option>
-          </select>
-          <small id="produkError" class="error-text"></small>
+        <!-- Tombol Submit -->
+        <div class="submit-wrapper">
+          <button type="submit" class="btn-submit">Kirim Pemesanan</button>
         </div>
-
-        <button type="submit" class="btn-submit">Kirim Pemesanan</button>
       </form>
     </section>
 

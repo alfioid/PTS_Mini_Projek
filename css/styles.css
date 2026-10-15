@@ -405,3 +405,180 @@ body {
   font-size: var(--fs-base);
   color: var(--text-muted);
 }
+
+/* FORM PEMESANAN DINAMIS */
+.row-align {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.row-align label {
+  width: 140px;
+  margin-bottom: 0;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.input-wrapper {
+  flex: 1;
+}
+
+/* Kartu Belanja */
+.cart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.cart-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Baris Produk */
+.cart-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fafbfc;
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.cart-row select {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--text-dark);
+  outline: none;
+  cursor: pointer;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-qty {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  font-weight: 700;
+  font-size: var(--fs-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.btn-qty:hover {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.qty-val {
+  font-weight: 700;
+  min-width: 24px;
+  text-align: center;
+}
+
+.item-subtotal {
+  font-weight: 700;
+  color: var(--primary-color);
+  min-width: 100px;
+  text-align: right;
+  font-size: var(--fs-md);
+}
+
+.btn-remove-row {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  font-weight: 700;
+  font-size: var(--fs-xl);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.add-item-wrapper {
+  margin-top: 14px;
+  text-align: left;
+}
+
+.cart-divider {
+  border: 0;
+  height: 1px;
+  background: var(--border-color);
+  margin: 16px 0;
+}
+
+/* Summary Row */
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+}
+
+.summary-label {
+  font-size: var(--fs-lg);
+  color: var(--text-dark);
+}
+
+.summary-values {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.total-qty-text {
+  font-size: var(--fs-md);
+  color: var(--text-label);
+}
+
+.total-price-text {
+  font-size: var(--fs-xl);
+  color: var(--primary-color);
+}
+
+.submit-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-wrapper .btn-submit {
+  width: auto;
+  min-width: 220px;
+  border-radius: var(--radius-pill);
+  padding: 12px 32px;
+}
+
+@media (max-width: 600px) {
+  .row-align {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .cart-row {
+    flex-wrap: wrap;
+    border-radius: var(--radius-lg);
+  }
+  .summary-values {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+}
