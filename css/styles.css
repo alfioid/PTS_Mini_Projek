@@ -119,13 +119,6 @@ body {
   font-size: var(--fs-sm);
 }
 
-.user-avatar img {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-full);
-  object-fit: cover;
-}
-
 /* ==========================================
    4. STATISTIK & KONTROL BAR
    ========================================== */
@@ -141,8 +134,8 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.stat-item { color: var(--text-label); }
-.stat-item strong { color: #2d3748; }
+.stat-item { color: var(--text-label); align-self: center;}
+.stat-item strong { color: #2d3748; align-self: center; }
 
 .controls-bar {
   display: flex;
@@ -189,6 +182,7 @@ body {
   background: var(--bg-toggle);
   padding: 3px;
   border-radius: var(--radius-pill);
+  margin-left: auto; 
 }
 
 .btn-toggle {
