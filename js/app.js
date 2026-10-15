@@ -4,7 +4,8 @@ import {
   renderProducts,
   initViewMode,
   setViewMode,
-  updateFavBadge
+  updateFavBadge,
+  toggleFavFilter
 } from './ui.js';
 
 let allProducts = [];
@@ -25,13 +26,13 @@ async function initApp() {
     errorEl.style.display = 'none';
     productContainer.style.display = 'none';
 
-    // Fetch API dari DummyJSON
+    // 1. Ambil data produk dari REST API
     allProducts = await fetchProducts();
 
-    // Hitung statistik
+    // 2. Hitung statistik produk
     calculateStatistics(allProducts);
 
-    // Render produk & update badge favorite
+    // 3. Render kartu produk dan badge angka favorit
     renderProducts(allProducts);
     updateFavBadge();
 
@@ -55,14 +56,11 @@ function setupEventListeners() {
   document.getElementById('btnGrid')?.addEventListener('click', () => setViewMode('grid'));
   document.getElementById('btnList')?.addEventListener('click', () => setViewMode('list'));
 
-  // Search Real-time
-  document.getElementById('searchInput')?.addEventListener('input', (e) => {
-    const keyword = e.target.value.toLowerCase().trim();
-    const filtered = allProducts.filter(p =>
-      p.title.toLowerCase().includes(keyword) ||
-      p.category.toLowerCase().includes(keyword)
-    );
-    renderProducts(filtered);
+  // Toggle Filter Favorit (Saat tombol angka favorit diklik)
+  const favBadgeBtn = document.getElementById('favCountBadge')?.parentElement;
+  favBadgeBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleFavFilter(allProducts);
   });
 
   // Validasi & Submit Form Saran
@@ -87,13 +85,13 @@ function handleFormSubmit(e) {
   const pesanValue = pesanInput.value.trim();
   let isValid = true;
 
-  // Validasi 1: Nama minimal 5 karakter (Sesuai Digit Z=5)
+  // Validasi Nama minimal 5 karakter (Sesuai Digit Z=5)
   if (namaValue.length < 5) {
     namaError.textContent = 'Nama pengirim wajib diisi minimal 5 karakter.';
     isValid = false;
   }
 
-  // Validasi 2: Pesan saran tidak boleh kosong
+  // Validasi Pesan Saran tidak boleh kosong
   if (pesanValue === '') {
     pesanError.textContent = 'Pesan saran atau masukan tidak boleh kosong.';
     isValid = false;

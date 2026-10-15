@@ -1,6 +1,9 @@
 let favorites = JSON.parse(localStorage.getItem('bepro_favorites')) || [];
 let viewMode = localStorage.getItem('bepro_view_mode') || 'grid';
 
+// State penanda apakah filter favorit sedang aktif
+let isFavOnly = false;
+
 // ==========================================
 // 1. RENDER KATALOG PRODUK & FAVORITE
 // ==========================================
@@ -11,16 +14,24 @@ export function renderProducts(products) {
   if (!container) return;
   container.innerHTML = '';
 
-  if (totalCountEl) {
-    totalCountEl.textContent = products.length;
+  // Filter produk jika mode 'Hanya Favorit' aktif
+  let displayedProducts = products;
+  if (isFavOnly) {
+    displayedProducts = products.filter(p => favorites.includes(p.id));
   }
 
-  if (products.length === 0) {
-    container.innerHTML = '<p class="state-message">Tidak ada produk yang sesuai.</p>';
+  if (totalCountEl) {
+    totalCountEl.textContent = displayedProducts.length;
+  }
+
+  if (displayedProducts.length === 0) {
+    container.innerHTML = isFavOnly 
+      ? '<p class="state-message">Belum ada produk favorit yang disimpan.</p>'
+      : '<p class="state-message">Tidak ada produk yang tersedia.</p>';
     return;
   }
 
-  products.forEach(item => {
+  displayedProducts.forEach(item => {
     const isFav = favorites.includes(item.id);
     const card = document.createElement('div');
     card.className = 'product-card';
@@ -30,7 +41,7 @@ export function renderProducts(products) {
       <div class="card-body">
         <div class="card-top">
           <span class="category-tag">${item.category}</span>
-          <button class="btn-fav ${isFav ? 'active' : ''}" data-id="${item.id}">
+          <button class="btn-fav ${isFav ? 'active' : ''}" data-id="${item.id}" title="Favorit">
             ${isFav ? '♥' : '♡'}
           </button>
         </div>
@@ -40,6 +51,7 @@ export function renderProducts(products) {
       </div>
     `;
 
+    // Event handler tombol hati di setiap kartu produk
     const favBtn = card.querySelector('.btn-fav');
     favBtn.addEventListener('click', () => toggleFavorite(item.id, products));
 
@@ -61,6 +73,22 @@ function toggleFavorite(id, currentProducts) {
 export function updateFavBadge() {
   const badge = document.getElementById('favCountBadge');
   if (badge) badge.textContent = favorites.length;
+}
+
+// TOGGLE FILTER: TAMPILKAN HANYA FAVORIT ATAU SEMUA PRODUK
+export function toggleFavFilter(allProducts) {
+  isFavOnly = !isFavOnly;
+  
+  const badgeBtn = document.getElementById('favCountBadge')?.parentElement;
+  if (badgeBtn) {
+    if (isFavOnly) {
+      badgeBtn.classList.add('active-filter');
+    } else {
+      badgeBtn.classList.remove('active-filter');
+    }
+  }
+
+  renderProducts(allProducts);
 }
 
 // ==========================================

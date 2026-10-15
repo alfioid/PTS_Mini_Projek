@@ -118,44 +118,10 @@ body {
 .stat-item { color: var(--text-label); align-self: center;}
 .stat-item strong { color: #2d3748; align-self: center; }
 
-.controls-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  min-width: 280px;
-}
-
 .total-label {
   font-weight: 600;
   font-size: var(--fs-md);
   white-space: nowrap;
-}
-
-.search-box input {
-  width: 100%;
-  padding: 10px 16px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-pill);
-  outline: none;
-  font-size: var(--fs-md);
-  background-color: var(--bg-card);
-}
-
-.search-box input:focus, 
-.form-group input:focus, 
-.form-group select:focus {
-  border-color: var(--primary-color);
-  outline: none;
 }
 
 .toggle-box {
@@ -525,4 +491,22 @@ body {
 .form-group textarea:focus {
   border-color: var(--primary-color);
   outline: none;
+}
+
+.btn-fav-badge {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-fast);
+}
+
+.btn-fav-badge:hover {
+  opacity: 0.8;
+}
+
+.btn-fav-badge.active-filter .badge {
+  background-color: var(--danger-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
 }
