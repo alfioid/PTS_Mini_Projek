@@ -14,11 +14,6 @@
       <div class="logo-icon">🛒</div>
       <span class="brand-title">BePro</span>
     </div>
-    <div class="header-right">
-      <button class="btn-favorite-nav">
-        Favorit <span id="favCountBadge" class="badge">0</span>
-      </button>
-    </div>
   </header>
 
   <main class="container">
@@ -33,6 +28,9 @@
       </div>
       <div class="stat-item">
         <strong>Kategori:</strong> <span id="statKategori">-</span>
+      </div>
+      <div class="stat-item">
+        <strong>Favorit:</strong> <span id="favCountBadge" class="badge">0</span>
       </div>
       <div class="toggle-box">
         <button id="btnGrid" class="btn-toggle active" title="Tampilan Grid">Grid ⊞</button>
@@ -54,51 +52,25 @@
     
     <section id="productContainer" class="product-container grid-view"></section>
 
- <!-- FORM PEMESANAN PRODUK INTERAKTIF -->
-    <!-- FORM PEMESANAN PRODUK INTERAKTIF -->
+<!-- FORM SARAN & MASUKAN PRODUK -->
     <section class="form-section">
-      <h2>📝 Form Pemesanan Produk UMKM</h2>
+      <h2>💬 Form Saran & Masukan UMKM</h2>
       <div id="formAlert" class="alert" style="display: none;"></div>
 
-      <form id="orderForm" novalidate>
-        <!-- Nama Pembeli -->
-        <div class="form-group row-align">
-          <label for="namaInput">Nama Pembeli</label>
-          <div class="input-wrapper">
-            <input type="text" id="namaInput" placeholder="Masukkan nama pembeli (minimal 5 karakter)">
-            <small id="namaError" class="error-text"></small>
-          </div>
+      <form id="feedbackForm" novalidate>
+        <div class="form-group">
+          <label for="namaInput">Nama Pengirim *</label>
+          <input type="text" id="namaInput" placeholder="Masukkan nama Anda (minimal 5 karakter)">
+          <small id="namaError" class="error-text"></small>
         </div>
 
-        <!-- Kartu Daftar Item Belanja -->
-        <div class="cart-card">
-          <div id="cartItemsContainer" class="cart-items-container">
-            <!-- Item produk dinamis akan ditambahkan oleh JavaScript di sini -->
-          </div>
-
-          <!-- Tombol Tambah Item -->
-          <div class="add-item-wrapper">
-            <button type="button" id="btnAddCartItem" class="btn-add-item">+ Tambah Produk Lain</button>
-          </div>
-          <hr class="cart-divider">
-          <!-- Ringkasan Total Belanja -->
-          <div class="cart-summary-row">
-            <div class="summary-label">Total</div>
-            <div class="summary-values">
-              <span class="total-qty-text">
-                <strong id="totalQtyCount">0</strong> barang dibeli
-              </span>
-              <span class="total-price-text">
-                Rp <strong id="grandTotalPrice">0</strong>
-              </span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="pesanInput">Pesan / Saran Masukan *</label>
+          <textarea id="pesanInput" rows="4" placeholder="Tuliskan saran atau masukan Anda untuk produk UMKM ini..."></textarea>
+          <small id="pesanError" class="error-text"></small>
         </div>
 
-        <!-- Tombol Submit -->
-        <div class="submit-wrapper">
-          <button type="submit" class="btn-submit">Kirim Pemesanan</button>
-        </div>
+        <button type="submit" class="btn-submit">Kirim Saran</button>
       </form>
     </section>
 

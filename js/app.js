@@ -2,20 +2,13 @@ import { fetchProducts } from './api.js';
 import { calculateStatistics } from './stats.js';
 import {
   renderProducts,
-  renderCartRows,
-  addCartRow,
   initViewMode,
   setViewMode,
-  updateFavBadge,
-  getFavorites,
-  getCartList,
-  resetCartList
+  updateFavBadge
 } from './ui.js';
 
-// State aplikasi lokal
 let allProducts = [];
 
-// Inisialisasi saat DOM selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
   initApp();
 });
@@ -25,7 +18,6 @@ async function initApp() {
   const errorEl = document.getElementById('errorState');
   const productContainer = document.getElementById('productContainer');
 
-  // Set tampilan awal dari localStorage (Grid/List)
   initViewMode();
 
   try {
@@ -33,16 +25,15 @@ async function initApp() {
     errorEl.style.display = 'none';
     productContainer.style.display = 'none';
 
-    // 1. Ambil data produk dari REST API DummyJSON
+    // Fetch API dari DummyJSON
     allProducts = await fetchProducts();
 
-    // 2. Tampilkan kalkulasi statistik
+    // Hitung statistik
     calculateStatistics(allProducts);
 
-    // 3. Render kartu produk dan opsi keranjang
+    // Render produk & update badge favorite
     renderProducts(allProducts);
     updateFavBadge();
-    renderCartRows(allProducts);
 
     loadingEl.style.display = 'none';
     productContainer.style.display = '';
@@ -56,7 +47,6 @@ async function initApp() {
     document.getElementById('btnRetry')?.addEventListener('click', initApp);
   }
 
-  // Bind Event Listeners
   setupEventListeners();
 }
 
@@ -65,7 +55,7 @@ function setupEventListeners() {
   document.getElementById('btnGrid')?.addEventListener('click', () => setViewMode('grid'));
   document.getElementById('btnList')?.addEventListener('click', () => setViewMode('list'));
 
-  // Pencarian Real-time
+  // Search Real-time
   document.getElementById('searchInput')?.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
     const filtered = allProducts.filter(p =>
@@ -75,48 +65,48 @@ function setupEventListeners() {
     renderProducts(filtered);
   });
 
-  // Tombol Tambah Item Belanja Dinamis
-  const addItemWrapper = document.querySelector('.add-item-wrapper');
-  if (addItemWrapper && !document.getElementById('btnAddCartItem')) {
-    const btnAdd = document.createElement('button');
-    btnAdd.type = 'button';
-    btnAdd.id = 'btnAddCartItem';
-    btnAdd.className = 'btn-add-item';
-    btnAdd.textContent = '+ Tambah Produk Lain';
-    btnAdd.addEventListener('click', () => addCartRow(allProducts));
-    addItemWrapper.appendChild(btnAdd);
-  }
-
-  // Validasi & Submit Form Pemesanan
-  document.getElementById('orderForm')?.addEventListener('submit', handleFormSubmit);
+  // Validasi & Submit Form Saran
+  document.getElementById('feedbackForm')?.addEventListener('submit', handleFormSubmit);
 }
 
 function handleFormSubmit(e) {
   e.preventDefault();
 
   const namaInput = document.getElementById('namaInput');
+  const pesanInput = document.getElementById('pesanInput');
   const namaError = document.getElementById('namaError');
+  const pesanError = document.getElementById('pesanError');
   const formAlert = document.getElementById('formAlert');
 
+  // Reset pesan error
   namaError.textContent = '';
+  pesanError.textContent = '';
   formAlert.style.display = 'none';
 
   const namaValue = namaInput.value.trim();
+  const pesanValue = pesanInput.value.trim();
+  let isValid = true;
 
-  // Validasi Nama minimal 5 karakter (Digit Z=5)
+  // Validasi 1: Nama minimal 5 karakter (Sesuai Digit Z=5)
   if (namaValue.length < 5) {
-    namaError.textContent = 'Nama pembeli wajib diisi minimal 5 karakter.';
-    return;
+    namaError.textContent = 'Nama pengirim wajib diisi minimal 5 karakter.';
+    isValid = false;
   }
 
-  const grandTotal = document.getElementById('grandTotalPrice').textContent;
-  const totalQty = document.getElementById('totalQtyCount').textContent;
+  // Validasi 2: Pesan saran tidak boleh kosong
+  if (pesanValue === '') {
+    pesanError.textContent = 'Pesan saran atau masukan tidak boleh kosong.';
+    isValid = false;
+  }
 
-  formAlert.className = 'alert success';
-  formAlert.innerHTML = `Pemesanan atas nama <strong>${namaValue}</strong> berhasil dikirim!<br>Total: <strong>${totalQty} barang</strong> dengan nominal <strong>Rp ${grandTotal}</strong>.`;
-  formAlert.style.display = 'block';
+  // Jika Validasi Sukses
+  if (isValid) {
+    formAlert.className = 'alert success';
+    formAlert.innerHTML = `Terima kasih <strong>${namaValue}</strong>! Saran dan masukan Anda telah berhasil dikirim.`;
+    formAlert.style.display = 'block';
 
-  // Reset form setelah berhasil
-  namaInput.value = '';
-  resetCartList(allProducts);
+    // Reset isi form
+    namaInput.value = '';
+    pesanInput.value = '';
+  }
 }

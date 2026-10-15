@@ -82,14 +82,6 @@ body {
   border-bottom: 1px solid var(--border-light);
 }
 
-.brand, .header-right, .btn-favorite-nav {
-  display: flex;
-  align-items: center;
-}
-
-.brand { gap: 10px; }
-.header-right { gap: 16px; }
-
 .logo-icon {
   font-size: 22px;
 }
@@ -98,17 +90,6 @@ body {
   font-weight: 700;
   font-size: var(--fs-3xl);
   color: var(--primary-color);
-}
-
-.btn-favorite-nav {
-  background-color: var(--primary-badge-bg);
-  border: none;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  font-weight: 600;
-  color: var(--primary-color);
-  cursor: pointer;
-  gap: 6px;
 }
 
 .badge {
@@ -425,22 +406,6 @@ body {
   flex: 1;
 }
 
-/* Kartu Belanja */
-.cart-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  padding: 20px;
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 24px;
-}
-
-.cart-items-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 /* Baris Produk */
 .cart-row {
   display: flex;
@@ -513,75 +478,6 @@ body {
   padding: 0 4px;
 }
 
-.add-item-wrapper {
-  margin-top: 14px;
-  text-align: left;
-}
-
-.btn-add-item {
-  background: none;
-  border: 1px dashed var(--primary-color);
-  color: var(--primary-color);
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  font-size: var(--fs-base);
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.btn-add-item:hover {
-  background: var(--primary-light);
-}
-
-.cart-divider {
-  border: 0;
-  height: 1px;
-  background: var(--border-color);
-  margin: 16px 0;
-}
-
-/* Summary Row */
-.cart-summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 700;
-}
-
-.summary-label {
-  font-size: var(--fs-lg);
-  color: var(--text-dark);
-}
-
-.summary-values {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.total-qty-text {
-  font-size: var(--fs-md);
-  color: var(--text-label);
-}
-
-.total-price-text {
-  font-size: var(--fs-xl);
-  color: var(--primary-color);
-}
-
-.submit-wrapper {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.submit-wrapper .btn-submit {
-  width: auto;
-  min-width: 220px;
-  border-radius: var(--radius-pill);
-  padding: 12px 32px;
-}
-
 @media (max-width: 600px) {
   .row-align {
     flex-direction: column;
@@ -599,22 +495,6 @@ body {
   }
 }
 
-.btn-add-item {
-  background: none;
-  border: 1px dashed var(--primary-color);
-  color: var(--primary-color);
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  font-size: var(--fs-base);
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.btn-add-item:hover {
-  background: var(--primary-light);
-}
-
 .btn-retry {
   background-color: var(--danger-color);
   color: #ffffff;
@@ -628,4 +508,21 @@ body {
 
 .btn-retry:hover {
   opacity: 0.9;
+}
+
+/* STYLE KHUSUS TEXTAREA FORM SARAN */
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-md);
+  font-family: var(--font-family);
+  resize: vertical;
+  background-color: var(--bg-card);
+}
+
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
