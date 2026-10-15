@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaltara Harvest - Dashboard Produk UMKM</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <div class="logo-icon">🛒</div>
+      <span class="brand-title">BePro</span>
+    </div>
+    <div class="header-right">
+      <button class="btn-favorite-nav">
+        Favorit <span id="favCountBadge" class="badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- BARIS STATISTIK OTOMATIS (JAVASCRIPT) -->
+    <section class="stats-bar">
+      <div class="stat-item">
+        <strong>Produk Termahal:</strong> <span id="statTermahal">-</span>
+      </div>
+      <div class="stat-item">
+        <strong>Harga Rata-Rata:</strong> <span id="statRataRata">-</span>
+      </div>
+      <div class="stat-item">
+        <strong>Kategori:</strong> <span id="statKategori">-</span>
+      </div>
+    </section>
+
+    <!-- BARIS KONTROL (SEARCH & TOGGLE GRID/LIST) -->
+    <section class="controls-bar">
+      <div class="search-box">
+        <span class="total-label">Total Produk: <span id="totalProdukCount">0</span></span>
+        <input type="text" id="searchInput" placeholder="Cari nama produk atau kategori...">
+      </div>
+      <div class="toggle-box">
+        <button id="btnGrid" class="btn-toggle active" title="Tampilan Grid">Grid ⊞</button>
+        <button id="btnList" class="btn-toggle" title="Tampilan List">List ☰</button>
+      </div>
+    </section>
+
+    <!-- CONTAINER KATALOG PRODUK -->
+    <section id="loadingState" class="state-message">Memuat data produk...</section>
+    <section id="errorState" class="state-message error-msg" style="display: none;"></section>
+    
+    <section id="productContainer" class="product-container grid-view"></section>
+
+    <!-- FORM PEMESANAN PRODUK -->
+    <section class="form-section">
+      <h2>📝 Form Pemesanan Produk UMKM</h2>
+      <div id="formAlert" class="alert" style="display: none;"></div>
+
+      <form id="orderForm" novalidate>
+        <div class="form-group">
+          <label for="namaInput">Nama Lengkap *</label>
+          <input type="text" id="namaInput" placeholder="Masukkan nama (minimal 5 karakter)">
+          <small id="namaError" class="error-text"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="emailInput">Alamat Email *</label>
+          <input type="email" id="emailInput" placeholder="contoh: nama@email.com">
+          <small id="emailError" class="error-text"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="produkSelect">Pilih Produk *</label>
+          <select id="produkSelect">
+            <option value="">-- Pilih Produk --</option>
+          </select>
+          <small id="produkError" class="error-text"></small>
+        </div>
+
+        <button type="submit" class="btn-submit">Kirim Pemesanan</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><strong>PTS Pemrograman Web 2026</strong> | Muhammad Nur Alfian (NPM: 2440304025) - Teknik Komputer UBT</p>
+  </footer>
+
+</body>
+</html>
