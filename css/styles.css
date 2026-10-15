@@ -6,7 +6,6 @@
   --primary-color: #2e7d32;
   --primary-hover: #256629;
   --primary-light: #e8f5e9;
-  --primary-badge-bg: #f0f4f1;
   --bg-main: #f4f7f9;
   --bg-card: #ffffff;
   --bg-toggle: #e2e8f0;
@@ -82,6 +81,12 @@ body {
   border-bottom: 1px solid var(--border-light);
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .logo-icon {
   font-size: 22px;
 }
@@ -115,8 +120,15 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.stat-item { color: var(--text-label); align-self: center;}
-.stat-item strong { color: #2d3748; align-self: center; }
+.stat-item {
+  color: var(--text-label);
+  align-self: center;
+}
+
+.stat-item strong {
+  color: #2d3748;
+  align-self: center;
+}
 
 .total-label {
   font-weight: 600;
@@ -124,12 +136,30 @@ body {
   white-space: nowrap;
 }
 
+.btn-fav-badge {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-fast);
+}
+
+.btn-fav-badge:hover {
+  opacity: 0.8;
+}
+
+.btn-fav-badge.active-filter .badge {
+  background-color: var(--danger-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
 .toggle-box {
   display: flex;
   background: var(--bg-toggle);
   padding: 3px;
   border-radius: var(--radius-pill);
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .btn-toggle {
@@ -269,7 +299,7 @@ body {
   margin-bottom: 40px;
 }
 
-.form-section h2 {
+.form-section h1 {
   font-size: var(--fs-2xl);
   margin-bottom: 16px;
 }
@@ -285,13 +315,25 @@ body {
   margin-bottom: 6px;
 }
 
-.form-group input, 
-.form-group select {
+.form-group input,
+.form-group textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   font-size: var(--fs-md);
+  font-family: var(--font-family);
+  background-color: var(--bg-card);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 .error-text {
@@ -341,126 +383,6 @@ body {
   color: var(--danger-color);
 }
 
-/* ==========================================
-   7. FOOTER
-   ========================================== */
-.footer {
-  background: var(--bg-card);
-  text-align: center;
-  padding: 16px;
-  border-top: 1px solid var(--border-light);
-  font-size: var(--fs-base);
-  color: var(--text-muted);
-}
-
-/* FORM PEMESANAN DINAMIS */
-.row-align {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.row-align label {
-  width: 140px;
-  margin-bottom: 0;
-  font-weight: 700;
-  color: var(--text-dark);
-}
-
-.input-wrapper {
-  flex: 1;
-}
-
-/* Baris Produk */
-.cart-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #fafbfc;
-  border: 1px solid var(--border-color);
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-}
-
-.cart-row select {
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-size: var(--fs-md);
-  font-weight: 600;
-  color: var(--text-dark);
-  outline: none;
-  cursor: pointer;
-}
-
-.qty-control {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-qty {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
-  font-weight: 700;
-  font-size: var(--fs-md);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-}
-
-.btn-qty:hover {
-  background: var(--primary-light);
-  color: var(--primary-color);
-}
-
-.qty-val {
-  font-weight: 700;
-  min-width: 24px;
-  text-align: center;
-}
-
-.item-subtotal {
-  font-weight: 700;
-  color: var(--primary-color);
-  min-width: 100px;
-  text-align: right;
-  font-size: var(--fs-md);
-}
-
-.btn-remove-row {
-  background: none;
-  border: none;
-  color: var(--danger-color);
-  font-weight: 700;
-  font-size: var(--fs-xl);
-  cursor: pointer;
-  padding: 0 4px;
-}
-
-@media (max-width: 600px) {
-  .row-align {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  .cart-row {
-    flex-wrap: wrap;
-    border-radius: var(--radius-lg);
-  }
-  .summary-values {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
-}
-
 .btn-retry {
   background-color: var(--danger-color);
   color: #ffffff;
@@ -476,37 +398,14 @@ body {
   opacity: 0.9;
 }
 
-/* STYLE KHUSUS TEXTAREA FORM SARAN */
-.form-group textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-md);
-  font-family: var(--font-family);
-  resize: vertical;
-  background-color: var(--bg-card);
-}
-
-.form-group textarea:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.btn-fav-badge {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 2px 4px;
-  border-radius: var(--radius-pill);
-  transition: var(--transition-fast);
-}
-
-.btn-fav-badge:hover {
-  opacity: 0.8;
-}
-
-.btn-fav-badge.active-filter .badge {
-  background-color: var(--danger-color);
-  box-shadow: 0 0 0 2px var(--primary-light);
+/* ==========================================
+   7. FOOTER
+   ========================================== */
+.footer {
+  background: var(--bg-card);
+  text-align: center;
+  padding: 16px;
+  border-top: 1px solid var(--border-light);
+  font-size: var(--fs-base);
+  color: var(--text-muted);
 }
