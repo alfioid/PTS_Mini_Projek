@@ -24,7 +24,7 @@ export function calculateStatistics(data) {
   const elKategori = document.getElementById('statKategori');
 
   if (elTermahal) {
-    elTermahal.textContent = `${termahal.title} (Rp ${termahal.price.toLocaleString('id-ID')})`;
+    elTermahal.textContent = `Rp ${termahal.price.toLocaleString('id-ID')}`;
   }
   if (elRataRata) {
     elRataRata.textContent = `Rp ${avgHarga.toLocaleString('id-ID')}`;
