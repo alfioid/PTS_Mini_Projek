@@ -172,3 +172,8 @@ Pencatatan rinci mengenai penggunaan kecerdasan buatan (AI) selama proses analis
 
 Silakan buka file dokumentasi log di repository GitHub ini:
 👉 **[Lihat AI_USAGE_LOG.md](./AI_USAGE_LOG.md)**
+
+## 🔗 Tautan Repository GitHub
+
+Kamu bisa langsung mengakses dan melihat kode sumber lengkap dari proyek ini melalui tautan berikut:
+👉 Repository GitHub BePro - alfioid/PTS_Mini_Projek
