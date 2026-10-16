@@ -176,4 +176,4 @@ Silakan buka file dokumentasi log di repository GitHub ini:
 ## 🔗 Tautan Repository GitHub
 
 Kamu bisa langsung mengakses dan melihat kode sumber lengkap dari proyek ini melalui tautan berikut:
-👉 Repository GitHub BePro - alfioid/PTS_Mini_Projek
+👉 Repository GitHub BePro - [alfioid/PTS_Mini_Projek](https://github.com/alfioid/PTS_Mini_Projek)
